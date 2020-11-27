@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $("#login").click(function () {
+                if(checkName() && checkPwd()){
+                    var data = $("#loginForm").serialize();
+                    $.ajax({
+                        url:"login",
+                        type:"post",
+                        data:data,
+                        success:function (data) {
+                            if(data == 1){
+                                alert("login success");
+                                location.href = "index.html";
+                            }else {
+                                alert("登录失败！")
+                                location.reload();
+                            }
+                        }
+                    })
+                }
+            })
+
+
+            $("#register").click(function () {
+                location.href = "register.html";
+            })
+
+
+            function checkName(){
+                if($("#name").val() == ""){
+                    alert("用户名不能为空");
+                    return false;
+                }
+                return true;
+            }
+            function checkPwd(){
+                if($("#pwd").val() == ""){
+                    alert("密码不能为空");
+                    return false
+                }
+                return true;
+            }
+
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form id="loginForm">
+                    <h2>用户登录</h2>
+                    <div class="form-group">
+                    用户名：<input type="text" class="form-control" id="name" name="uname" placeholder="张三"/><br/>
+                    </div>
+                    <div class="form-group">
+                    密  码：<input type="text" class="form-control" id="pwd" name="upwd" placeholder="123"/>
+                    </div>
+                    <div class="col-lg-3">
+                    <button type="button" class="btn btn-default" id="login" name="login">登录</button>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-3">
+                    <button type="button" class="btn btn-default" id="register" name="register">注册</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</body>
+</html>

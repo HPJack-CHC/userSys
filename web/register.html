@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            function checkName() {
+                if($("#uname").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkPwd() {
+                if($("#upwd").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkAge() {
+                if($("#age").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkEmail() {
+                if($("#email").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkTel() {
+                if($("#tel").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkAddress() {
+                if($("#address").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+            function checkBirthday() {
+                if($("#birthday").val() == ""){
+                    alert("not null!")
+                    return false
+                }
+                return true;
+            }
+
+            $("#register").click(function () {
+                if(checkName() && checkPwd() && checkAge() && checkEmail() && checkTel() && checkAddress() && checkBirthday()) {
+                    var data = $("#register_form").serialize();
+                    $.ajax({
+                        url: "addUser",
+                        type: "post",
+                        data: data,
+                        success: function (data) {
+                            if (date == 200){
+                                alert("You are successful! And you will be login");
+                                location.href = "login.html";
+                            } else {
+                                alert("You are fail");
+                            }
+                        }
+                    })
+                }
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <from class="form-horizontal" id="register_form">
+                <h2>用户注册</h2>
+                <div class="form-group">
+                    <label for="uname" class="col-md-2 control-label">用户名：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="uname" id="uname" placeholder="name"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="upwd" class="col-md-2 control-label">密 码：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="upwd" id="upwd" placeholder="密码"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="col-md-2 control-label">年龄：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="age" id="age" placeholder="年龄"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-2 control-label">邮箱：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="邮箱"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">性别：</label>
+                    <div class="col-md-3">
+                        <input type="radio" name="sex" value="男" checked/> <label class="control-label">男</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" name="sex" value="女"/> <label class="control-label">女</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel" class="col-md-2 control-label">电话：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="tel" id="tel" placeholder="电话"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-md-2 control-label">地址：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="地址"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthday" class="col-md-2 control-label">生日：</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="yyyy-mm-dd"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <input type="button" id="register" value="注册" class="btn btn-group-xs col-md-8 col-md-pull-1"/>
+                </div>
+            </from>
+        <div class="col-md-3"></div>
+    </div>
+</body>
+</html>

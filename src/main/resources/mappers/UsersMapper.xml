@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nf.users_sys.dao.UserDao">
+    <resultMap id="userMap" type="edu.nf.users_sys.entity.Users">
+        <id property="uid" column="u_id"/>
+        <result property="uname" column="u_name"/>
+        <result property="upwd" column="password"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result property="tel" column="tel"/>
+        <result property="address" column="address"/>
+        <result property="birthday" column="birthday"/>
+    </resultMap>
+    <insert id="addUser" parameterType="Users">
+        insert into user_db values(u_name,password,age,email,sex,tel,address,birthday)
+    </insert>
+
+    <select id="list" resultMap="userMap">
+        select u_id, u_name, password, age, email, sex, tel, address, birthday from user_db
+    </select>
+
+
+    <select id="selUser" resultMap="userMap">
+        select * from user_db
+        <where>
+            <if test="param1 !=null and param1 != ''">
+                u_name = #{param1}
+            </if>
+            <if test="param2 != null and param2 != ''">
+                and password = #{param2}
+            </if>
+        </where>
+    </select>
+
+</mapper>
